@@ -1,124 +1,124 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>d2l-dom-visibility tests</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-		<script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-		<script src="../../web-component-tester/browser.js"></script>
-		<link rel="import" href="../../polymer/polymer.html">
-		<link rel="import" href="../d2l-dom-visibility.html">
-	</head>
-	<body>
+    <head>
+        <meta charset="UTF-8">
+        <title>d2l-dom-visibility tests</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+        <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+        <script src="../../web-component-tester/browser.js"></script>
+        <link rel="import" href="../../polymer/polymer.html">
+        <link rel="import" href="../d2l-dom-visibility.html">
+    </head>
+    <body>
 
-		<dom-module id="d2l-visibility-test">
-			<template>
-				<style>
-					:host([hidden]) {
-						display: none;
-					}
-					:host([hidden-shadow]) .container {
-						display: none;
-					}
-				</style>
-				<div class="container">
-					<slot></slot>
-				</div>
-			</template>
-			<script>
-				Polymer({
-					is: 'd2l-visibility-test'
-				});
-			</script>
-		</dom-module>
+        <dom-module id="d2l-visibility-test">
+            <template>
+                <style>
+                    :host([hidden]) {
+                        display: none;
+                    }
+                    :host([hidden-shadow]) .container {
+                        display: none;
+                    }
+                </style>
+                <div class="container">
+                    <slot></slot>
+                </div>
+            </template>
+            <script>
+                Polymer({
+                    is: 'd2l-visibility-test'
+                });
+            </script>
+        </dom-module>
 
-		<test-fixture id="visibilityFixture">
-			<template>
-				<style>
-					#visibilityInheritHidden { visibility: hidden; }
-					#displayInheritNone { display: none; }
-				</style>
-				<d2l-visibility-test id="wc1">
-					<div id="default"></div>
-					<div id="visibilityHidden" style="visibility:hidden;"></div>
-					<div id="visibilityInheritHidden"></div>
-					<div id="displayNone" style="display:none;"></div>
-					<div id="displayInheritNone"></div>
-					<div style="display:none;">
-						<div id="parentDisplayNone"></div>
-					</div>
-					<div style="visibility:hidden;">
-						<div id="parentVisibilityNone"></div>
-					</div>
-				</d2l-visibility-test>
-			</template>
-		</test-fixture>
+        <test-fixture id="visibilityFixture">
+            <template>
+                <style>
+                    #visibilityInheritHidden { visibility: hidden; }
+                    #displayInheritNone { display: none; }
+                </style>
+                <d2l-visibility-test id="wc1">
+                    <div id="default"></div>
+                    <div id="visibilityHidden" style="visibility:hidden;"></div>
+                    <div id="visibilityInheritHidden"></div>
+                    <div id="displayNone" style="display:none;"></div>
+                    <div id="displayInheritNone"></div>
+                    <div style="display:none;">
+                        <div id="parentDisplayNone"></div>
+                    </div>
+                    <div style="visibility:hidden;">
+                        <div id="parentVisibilityNone"></div>
+                    </div>
+                </d2l-visibility-test>
+            </template>
+        </test-fixture>
 
-		<script>
+        <script>
 
-		describe('d2l-dom-visibility', function() {
+        describe('d2l-dom-visibility', function() {
 
-			var Visibility = D2L.Dom.Visibility;
+            var Visibility = D2L.Dom.Visibility;
 
-			describe('isVisible', function() {
+            describe('isVisible', function() {
 
-				var visibilityFixture;
+                var visibilityFixture;
 
-				beforeEach(function() {
-					visibilityFixture = fixture('visibilityFixture')[1];
-				});
+                beforeEach(function() {
+                    visibilityFixture = fixture('visibilityFixture')[1];
+                });
 
-				it('returns true if it and all ancestors are visible', function() {
-					expect(Visibility.isVisible(visibilityFixture.querySelector('#default')))
-						.to.be.true;
-				});
+                it('returns true if it and all ancestors are visible', function() {
+                    expect(Visibility.isVisible(visibilityFixture.querySelector('#default')))
+                        .to.be.true;
+                });
 
-				it('returns false if web component ancestor has display:none', function() {
-					Polymer.dom(visibilityFixture).setAttribute('hidden', true);
-					expect(Visibility.isVisible(visibilityFixture.querySelector('#default')))
-						.to.be.false;
-				});
+                it('returns false if web component ancestor has display:none', function() {
+                    Polymer.dom(visibilityFixture).setAttribute('hidden', true);
+                    expect(Visibility.isVisible(visibilityFixture.querySelector('#default')))
+                        .to.be.false;
+                });
 
-				it('returns false if web component shadow ancestor has display:none', function() {
-					Polymer.dom(visibilityFixture).setAttribute('hidden-shadow', true);
-					expect(Visibility.isVisible(visibilityFixture.querySelector('#default')))
-						.to.be.false;
-				});
+                it('returns false if web component shadow ancestor has display:none', function() {
+                    Polymer.dom(visibilityFixture).setAttribute('hidden-shadow', true);
+                    expect(Visibility.isVisible(visibilityFixture.querySelector('#default')))
+                        .to.be.false;
+                });
 
-				it('returns false if inline style has visibility:hidden', function() {
-					expect(Visibility.isVisible(visibilityFixture.querySelector('#visibilityHidden')))
-						.to.be.false;
-				});
+                it('returns false if inline style has visibility:hidden', function() {
+                    expect(Visibility.isVisible(visibilityFixture.querySelector('#visibilityHidden')))
+                        .to.be.false;
+                });
 
-				it('returns false if inline style has display:none', function() {
-					expect(Visibility.isVisible(visibilityFixture.querySelector('#displayNone')))
-						.to.be.false;
-				});
+                it('returns false if inline style has display:none', function() {
+                    expect(Visibility.isVisible(visibilityFixture.querySelector('#displayNone')))
+                        .to.be.false;
+                });
 
-				it('returns false if inheriting visibility:hidden', function() {
-					expect(Visibility.isVisible(visibilityFixture.querySelector('#visibilityInheritHidden')))
-						.to.be.false;
-				});
+                it('returns false if inheriting visibility:hidden', function() {
+                    expect(Visibility.isVisible(visibilityFixture.querySelector('#visibilityInheritHidden')))
+                        .to.be.false;
+                });
 
-				it('returns false if inheriting display:none', function() {
-					expect(Visibility.isVisible(visibilityFixture.querySelector('#displayInheritNone')))
-						.to.be.false;
-				});
+                it('returns false if inheriting display:none', function() {
+                    expect(Visibility.isVisible(visibilityFixture.querySelector('#displayInheritNone')))
+                        .to.be.false;
+                });
 
-				it('returns false if parent has display:none', function() {
-					expect(Visibility.isVisible(visibilityFixture.querySelector('#parentDisplayNone')))
-						.to.be.false;
-				});
+                it('returns false if parent has display:none', function() {
+                    expect(Visibility.isVisible(visibilityFixture.querySelector('#parentDisplayNone')))
+                        .to.be.false;
+                });
 
-				it('returns false if parent has visibility:hidden', function() {
-					expect(Visibility.isVisible(visibilityFixture.querySelector('#parentVisibilityNone')))
-						.to.be.false;
-				});
+                it('returns false if parent has visibility:hidden', function() {
+                    expect(Visibility.isVisible(visibilityFixture.querySelector('#parentVisibilityNone')))
+                        .to.be.false;
+                });
 
-			});
+            });
 
-		});
+        });
 
-		</script>
-	</body>
+        </script>
+    </body>
 </html>

@@ -1,29 +1,29 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-		<title>d2l-hierarchical-view tests</title>
-		<script src="../../web-component-tester/browser.js"></script>
-	</head>
-	<body>
-		<script>
-		var testVariants = [], tests = [
-			'dom.html',
-			'dom-expand-collapse.html',
-			'dom-visibility.html',
-			'dom-focus.html',
-			'focusable-behavior.html',
-			'focusable-arrowkeys-behavior.html',
-			'id.html'
-		];
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+        <title>d2l-hierarchical-view tests</title>
+        <script src="../../web-component-tester/browser.js"></script>
+    </head>
+    <body>
+        <script>
+        var testVariants = [], tests = [
+            'dom.html',
+            'dom-expand-collapse.html',
+            'dom-visibility.html',
+            'dom-focus.html',
+            'focusable-behavior.html',
+            'focusable-arrowkeys-behavior.html',
+            'id.html'
+        ];
 
-		for (var i = 0; i < tests.length; i++) {
-			testVariants.push(tests[i] + '?wc-shadydom=true');
-			testVariants.push(tests[i] + '?dom=shadow');
-		}
+        for (var i = 0; i < tests.length; i++) {
+            testVariants.push(tests[i] + '?wc-shadydom=true');
+            testVariants.push(tests[i] + '?dom=shadow');
+        }
 
-		WCT.loadSuites(testVariants);
-		</script>
-	</body>
+        WCT.loadSuites(testVariants);
+        </script>
+    </body>
 </html>
