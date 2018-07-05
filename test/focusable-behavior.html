@@ -27,12 +27,11 @@
             </template>
             <script type="module">
 import '../../@polymer/polymer/polymer-legacy.js';
-import '../d2l-focusable-behavior.js';
-import '../d2l-dom-focus.js';
+import { FocusableBehavior } from '../d2l-focusable-behavior.js';
 import { Polymer } from '../../@polymer/polymer/lib/legacy/polymer-fn.js';
 Polymer({
 	is: 'd2l-focusable-test',
-	behaviors: [D2L.PolymerBehaviors.FocusableBehavior],
+	behaviors: [FocusableBehavior],
 	getShadow1: function() { return this.$.shadow1; },
 	getShadow2: function() { return this.$.shadow2; }
 });
@@ -48,9 +47,7 @@ Polymer({
         </test-fixture>
 
         <script type="module">
-import '../../@polymer/polymer/polymer-legacy.js';
-import '../d2l-focusable-behavior.js';
-import '../d2l-dom-focus.js';
+import { Focus } from '../d2l-dom-focus.js';
 
 describe('d2l-focusable-behavior', function() {
 
@@ -66,7 +63,7 @@ describe('d2l-focusable-behavior', function() {
 
 	it('focuses on element with d2l-focusable when focus method is called', function() {
 		simpleFixture.focus();
-		expect(D2L.Dom.Focus.getComposedActiveElement()).to.equal(simpleFixture.getShadow2());
+		expect(Focus.getComposedActiveElement()).to.equal(simpleFixture.getShadow2());
 	});
 
 	it('triggers the focus event when focus method is called on custom element', function(done) {

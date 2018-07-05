@@ -5,8 +5,8 @@ import { useShadow } from '../@polymer/polymer/lib/utils/settings.js';
 window.D2L = window.D2L || {};
 window.D2L.PolymerBehaviors = window.D2L.PolymerBehaviors || {};
 
-/** @polymerBehavior */
-D2L.PolymerBehaviors.FocusableBehavior = {
+/* @polymerBehavior */
+export const FocusableBehavior = {
 
 	properties: {
 		/**
@@ -74,3 +74,5 @@ D2L.PolymerBehaviors.FocusableBehavior = {
 		}
 	}
 };
+
+window.D2L.PolymerBehaviors.FocusableBehavior = FocusableBehavior;

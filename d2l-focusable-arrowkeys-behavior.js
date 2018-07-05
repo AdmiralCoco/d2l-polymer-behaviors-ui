@@ -3,8 +3,8 @@ import '../fastdom/fastdom.js';
 window.D2L = window.D2L || {};
 window.D2L.PolymerBehaviors = window.D2L.PolymerBehaviors || {};
 
-/** @polymerBehavior */
-D2L.PolymerBehaviors.FocusableArrowKeysBehavior = {
+/* @polymerBehavior */
+export const FocusableArrowKeysBehavior = {
 
 	properties: {
 
@@ -161,3 +161,5 @@ D2L.PolymerBehaviors.FocusableArrowKeysBehavior = {
 	}
 
 };
+
+window.D2L.PolymerBehaviors.FocusableArrowKeysBehavior;

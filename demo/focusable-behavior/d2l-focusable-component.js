@@ -1,5 +1,5 @@
 import '../../../@polymer/polymer/polymer-legacy.js';
-import '../../d2l-focusable-behavior.js';
+import { FocusableBehavior } from '../../d2l-focusable-behavior.js';
 import { Polymer } from '../../../@polymer/polymer/lib/legacy/polymer-fn.js';
 import { html } from '../../../@polymer/polymer/lib/utils/html-tag.js';
 Polymer({
@@ -17,5 +17,5 @@ Polymer({
 `,
 
 	is: 'd2l-focusable-component',
-	behaviors: [D2L.PolymerBehaviors.FocusableBehavior]
+	behaviors: [FocusableBehavior]
 });
