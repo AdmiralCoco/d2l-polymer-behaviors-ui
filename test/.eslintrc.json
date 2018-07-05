@@ -1,0 +1,14 @@
+{
+  "parser": "babel-eslint",
+  "extends": "brightspace/polymer-config",
+  "globals": {
+    "expect": false,
+    "it": false,
+    "describe": false,
+    "fixture": false,
+    "beforeEach": false,
+    "afterEach": false,
+    "WCT": false,
+    "MockInteractions": false
+  }
+}
