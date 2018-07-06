@@ -2,11 +2,11 @@ export const Id = {
 
 	getUniqueId: function() {
 
-		if (window.D2L.Id._unique_index === undefined) {
-			window.D2L.Id._unique_index = 0;
+		if (Id._unique_index === undefined) {
+			Id._unique_index = 0;
 		}
-		window.D2L.Id._unique_index++;
-		return 'd2l-uid-' + window.D2L.Id._unique_index;
+		Id._unique_index++;
+		return 'd2l-uid-' + Id._unique_index;
 
 	}
 

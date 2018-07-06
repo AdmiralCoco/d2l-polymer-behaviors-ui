@@ -34,7 +34,7 @@ export const Swipe = {
 			}
 
 			var elapsedTime = new Date().getTime() - tracking.start.time;
-			if (elapsedTime > window.D2L.Gestures.Swipe._maxTime) {
+			if (elapsedTime > Swipe._maxTime) {
 				reset();
 				return;
 			}
@@ -54,7 +54,7 @@ export const Swipe = {
 			}
 
 			var horizontal = 'none';
-			if (Math.abs(distanceX) >= window.D2L.Gestures.Swipe._minDistance) {
+			if (Math.abs(distanceX) >= Swipe._minDistance) {
 				if (theta > 205 && theta < 335) {
 					horizontal = 'left';
 				} else if (theta > 25 && theta < 155) {
@@ -63,7 +63,7 @@ export const Swipe = {
 			}
 
 			var vertical = 'none';
-			if (Math.abs(distanceY) >= window.D2L.Gestures.Swipe._minDistance) {
+			if (Math.abs(distanceY) >= Swipe._minDistance) {
 				if (theta > 295 || theta < 65) {
 					vertical = 'up';
 				} else if (theta > 115 && theta < 245) {
