@@ -6,8 +6,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
         <script src="../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
         <script src="../../wct-browser-legacy/browser.js"></script>
-        <script type="module" src="../../@polymer/polymer/polymer-legacy.js"></script>
-        <script type="module" src="../d2l-dom-visibility.js"></script>
     </head>
     <body>
 
@@ -27,7 +25,6 @@
             </template>
             <script type="module">
 import '../../@polymer/polymer/polymer-legacy.js';
-import '../d2l-dom-visibility.js';
 import { Polymer } from '../../@polymer/polymer/lib/legacy/polymer-fn.js';
 Polymer({
 	is: 'd2l-visibility-test'
@@ -59,12 +56,10 @@ Polymer({
 
         <script type="module">
 import '../../@polymer/polymer/polymer-legacy.js';
-import '../d2l-dom-visibility.js';
+import { Visibility } from '../d2l-dom-visibility.js';
 import { dom } from '../../@polymer/polymer/lib/legacy/polymer.dom.js';
 
 describe('d2l-dom-visibility', function() {
-
-	var Visibility = D2L.Dom.Visibility;
 
 	describe('isVisible', function() {
 

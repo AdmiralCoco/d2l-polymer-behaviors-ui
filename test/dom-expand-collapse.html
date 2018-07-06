@@ -6,7 +6,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
         <script src="../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
         <script src="../../wct-browser-legacy/browser.js"></script>
-        <script type="module" src="../d2l-dom-expand-collapse.js"></script>
         <style>
             .d2l-hidden {
                 display: none !important;
@@ -28,7 +27,7 @@
         </test-fixture>
 
         <script type="module">
-import '../d2l-dom-expand-collapse.js';
+import { ExpandCollapse } from '../d2l-dom-expand-collapse.js';
 
 describe('d2l-dom-expand-collapse', function() {
 
@@ -41,7 +40,7 @@ describe('d2l-dom-expand-collapse', function() {
 		});
 
 		it('returns rejected promise if node not specified', function(done) {
-			D2L.Dom.ExpandCollapse.collapse()
+			ExpandCollapse.collapse()
 				.then(function() {
 					done(new Error('failed to fail'));
 				})
@@ -51,7 +50,7 @@ describe('d2l-dom-expand-collapse', function() {
 		});
 
 		it('collapses element', function(done) {
-			D2L.Dom.ExpandCollapse.collapse(collapseFixture)
+			ExpandCollapse.collapse(collapseFixture)
 				.then(function() {
 					expect(collapseFixture.getBoundingClientRect().height).to.equal(0);
 					expect(collapseFixture.offsetParent).to.equal(null);
@@ -65,9 +64,9 @@ describe('d2l-dom-expand-collapse', function() {
 			collapseFixture.style.height = '500px';
 			collapseFixture.style.overflow = 'visible';
 			collapseFixture.style.transition = 'transform 2s ease-out 0s';
-			D2L.Dom.ExpandCollapse.collapse(collapseFixture)
+			ExpandCollapse.collapse(collapseFixture)
 				.then(function() {
-					return D2L.Dom.ExpandCollapse.expand(collapseFixture);
+					return ExpandCollapse.expand(collapseFixture);
 				})
 				.then(function() {
 					expect(collapseFixture.style.display).to.equal('inline-block');
@@ -94,7 +93,7 @@ describe('d2l-dom-expand-collapse', function() {
 		});
 
 		it('returns rejected promise if node not specified', function(done) {
-			D2L.Dom.ExpandCollapse.expand()
+			ExpandCollapse.expand()
 				.then(function() {
 					done(new Error('failed to fail'));
 				})
@@ -104,7 +103,7 @@ describe('d2l-dom-expand-collapse', function() {
 		});
 
 		it('expands element', function(done) {
-			D2L.Dom.ExpandCollapse.expand(expandFixture)
+			ExpandCollapse.expand(expandFixture)
 				.then(function() {
 					expect(expandFixture.getBoundingClientRect().height).not.to.equal(0);
 					expect(expandFixture.offsetParent).not.to.equal(null);
@@ -115,7 +114,7 @@ describe('d2l-dom-expand-collapse', function() {
 
 		it('removes d2l-hidden if present', function(done) {
 			expandFixture.classList.add('d2l-hidden');
-			D2L.Dom.ExpandCollapse.expand(expandFixture)
+			ExpandCollapse.expand(expandFixture)
 				.then(function() {
 					expect(expandFixture.getBoundingClientRect().height).not.to.equal(0);
 					expect(expandFixture.classList.contains('d2l-hidden')).to.equal(false);
