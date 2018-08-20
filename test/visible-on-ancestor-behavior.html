@@ -4,27 +4,28 @@
 		<meta charset="UTF-8">
 		<title>d2l-visible-on-ancestor-behavior tests</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-		<script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-		<script src="../../web-component-tester/browser.js"></script>
-		<link rel="import" href="../../polymer/polymer.html">
-		<link rel="import" href="../d2l-focusable-behavior.html">
-		<link rel="import" href="../d2l-visible-on-ancestor-behavior.html">
+		<script src="../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+		<script src="../../wct-browser-legacy/browser.js"></script>
 	</head>
 	<body>
-		<dom-module id="d2l-visible-on-ancestor-behavior-test">
-			<template>
-				<button class="d2l-focusable"><slot></slot></button>
-			</template>
-			<script>
-				Polymer({
-					is: 'd2l-visible-on-ancestor-behavior-test',
-					behaviors: [
-						D2L.PolymerBehaviors.FocusableBehavior,
-						D2L.PolymerBehaviors.VisibleOnAncestorBehavior
-					]
-				});
-			</script>
-		</dom-module>
+		<script type="module">
+			import '../../@polymer/polymer/polymer-legacy.js';
+			import { Polymer } from '../../@polymer/polymer/lib/legacy/polymer-fn.js';
+			import { html } from '../../@polymer/polymer/lib/utils/html-tag.js';
+			import { FocusableBehavior } from '../d2l-focusable-behavior.js';
+			import { VisibleOnAncestorBehavior } from '../d2l-visible-on-ancestor-behavior.js';
+
+			Polymer({
+				_template: html`
+					<button class="d2l-focusable"><slot></slot></button>
+				`,
+				is: 'd2l-visible-on-ancestor-behavior-test',
+				behaviors: [
+					FocusableBehavior,
+					VisibleOnAncestorBehavior
+				]
+			});
+		</script>
 
 		<test-fixture id="noVisibleOnAncestor">
 			<template>
@@ -54,8 +55,8 @@
 			</template>
 		</test-fixture>
 
-		<script>
-
+		<script type="module">
+		import { afterNextRender } from '../@polymer/polymer/lib/utils/render-status.js';
 		describe('d2l-visible-on-ancestor-behavior', function() {
 
 			var voaFixture;
@@ -80,7 +81,7 @@
 
 				beforeEach(function(done) {
 					voaFixture = fixture('noVisibleOnAncestor');
-					Polymer.RenderStatus.afterNextRender(voaFixture, done);
+					afterNextRender(voaFixture, done);
 				});
 
 				it('is visible', function() {
@@ -103,7 +104,7 @@
 
 				beforeEach(function(done) {
 					voaFixture = fixture('noVisibleOnAncestorTarget');
-					Polymer.RenderStatus.afterNextRender(voaFixture, done);
+					afterNextRender(voaFixture, done);
 				});
 
 				it('is visible', function() {
@@ -116,7 +117,7 @@
 
 				beforeEach(function(done) {
 					voaFixture = fixture('simpleVisibleOnAncestor');
-					Polymer.RenderStatus.afterNextRender(voaFixture, done);
+					afterNextRender(voaFixture, done);
 				});
 
 				it('is visible if visible-on-ancestor attribute not specified', function() {
