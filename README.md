@@ -160,6 +160,36 @@ attached: function() {
 }
 ```
 
+**D2L.PolymerBehaviors.VisibleOnAncestorBehavior**
+
+The `VisibleOnAncestorBehavior` can be used to show an element when a specified ancestor is being hovered, or a child of the ancestor has the focus.  Likewise, the element will be hidden if the specified ancestor is not being hovered and none of its children have the focus.  To define a component with this behavior, simply include the styles and behavior as shown in the example below.
+
+```html
+<dom-module id="d2l-example">
+  <template>
+    <style include="d2l-visible-on-ancestor-styles"></style>
+  </template>
+  <script>
+  Polymer({
+    is: 'd2l-example',
+    behaviors: [
+      D2L.PolymerBehaviors.VisibleOnAncestorBehavior
+    ]
+  });
+  </script>
+</dom-module>
+```
+
+The consumer of `d2l-example` adds the `d2l-visible-on-ancestor-target` class to the desired ancestor that will be the target for mouse and focus events.  If the user hovers the target, or focuses any element contained within, `d2l-example` will be displayed.
+
+```html
+<div class="d2l-visible-on-ancestor-target">
+  ...
+  <d2l-example visible-on-ancestor></d2l-example>
+  ...
+</div>
+```
+
 ### Usage in Production
 
 In production, it's recommended to use a build tool like [Vulcanize](https://github.com/Polymer/vulcanize) to combine all your web components into a single import file. [More from the Polymer Docs: Optimize for Production](https://www.polymer-project.org/1.0/tools/optimize-for-production.html)...
